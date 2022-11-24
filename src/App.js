@@ -41,6 +41,15 @@ function reducer(state, { type, payload }) {
           operation: payload.operation
         }
       }
+      if (state.previousOperand == null && payload.operation == "%") {
+
+        return {
+          ...state, 
+          previousOperand: state.currentOperand / 100,
+          operation: null, 
+          currentOperand: null,
+        }
+      }
       if (state.previousOperand == null) {
         return {
           ...state, 
@@ -117,7 +126,6 @@ function evaluate({ currentOperand, previousOperand, operation }) {
       break    
     case "\u00F7":
       computation = prev / current
-      break
   }  
   return computation
 }
