@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
-import DigitButton from './DigitButton'
-import OperationButton from './OperationButton'
+import DigitButton from './components/DigitButton'
+import OperationButton from './components/OperationButton'
 import './styles.css'
 
 export const ACTIONS = {
@@ -42,10 +42,17 @@ function reducer(state, { type, payload }) {
         }
       }
       if (state.previousOperand == null && payload.operation == "%") {
-
         return {
           ...state, 
           previousOperand: state.currentOperand / 100,
+          operation: null, 
+          currentOperand: null,
+        }
+      }
+      if (state.previousOperand == null && payload.operation == "\u221A") {
+        return {
+          ...state, 
+          previousOperand: Math.sqrt(state.currentOperand),
           operation: null, 
           currentOperand: null,
         }
@@ -126,6 +133,8 @@ function evaluate({ currentOperand, previousOperand, operation }) {
       break    
     case "\u00F7":
       computation = prev / current
+    case "MOD":
+      computation = prev % current
   }  
   return computation
 }
