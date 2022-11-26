@@ -52,7 +52,7 @@ function reducer(state, { type, payload }) {
       if (state.previousOperand == null && payload.operation == "\u221A") {
         return {
           ...state, 
-          previousOperand: Math.sqrt(state.currentOperand),
+          previousOperand: Math.sqrt(state.current),
           operation: null, 
           currentOperand: null,
         }
