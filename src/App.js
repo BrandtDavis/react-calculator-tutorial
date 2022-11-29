@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import DigitButton from './components/DigitButton'
 import OperationButton from './components/OperationButton'
 import './styles.css'
+import { evaluate } from './helpers/evaluate'
 
 export const ACTIONS = {
   ADD_DIGIT: 'add-digit',
@@ -52,7 +53,7 @@ function reducer(state, { type, payload }) {
       if (state.previousOperand == null && payload.operation == "\u221A") {
         return {
           ...state, 
-          previousOperand: Math.sqrt(state.currentOperand),
+          previousOperand: Math.sqrt(state.current),
           operation: null, 
           currentOperand: null,
         }
@@ -113,35 +114,10 @@ function reducer(state, { type, payload }) {
   }
 }
 
-function evaluate({ currentOperand, previousOperand, operation }) {
-  const current = parseFloat(currentOperand)
-  const prev = parseFloat(previousOperand)
-
-  if (isNaN(prev) || isNaN(current)){
-    return ""
-  }
-  let computation = ""
-  switch(operation) {
-    case "+":
-      computation = prev + current
-      break
-    case "-":
-      computation = prev - current
-      break
-    case "*":
-      computation = prev * current
-      break    
-    case "\u00F7":
-      computation = prev / current
-    case "MOD":
-      computation = prev % current
-  }  
-  return computation
-}
-
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 0,
 })
+
 function formatOperand(operand) {
   if (operand == null) {
     return 
