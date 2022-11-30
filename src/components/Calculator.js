@@ -1,9 +1,11 @@
-import useCalculator from "../hooks/useCalculator";
-import DigitButton from './components/DigitButton'
-import OperationButton from './components/OperationButton'
-import './styles.css'
+import { useCalculator } from "../hooks/useCalculator";
+import { ACTIONS } from "../hooks/useCalculator";
+import DigitButton from './DigitButton'
+import OperationButton from './OperationButton'
+import '../styles.css'
 
-export default function Calculator({ currentOperand, previousOperand, operation, dispatch }) {
+export default function Calculator() {
+    const { currentOperand, previousOperand, operation, dispatch } = useCalculator()
  return (
     <div className="calculator-grid">
       <div className="output">

@@ -9,7 +9,7 @@ export const ACTIONS = {
     EVALUATE: 'evaluate'
 }
 
-const useCalculator = () => {
+export const useCalculator = () => {
     const [ { currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {});
 
     function reducer(state, { type, payload }) {
@@ -122,4 +122,3 @@ const useCalculator = () => {
     }
 };
 
-export default useCalculator;

@@ -1,4 +1,4 @@
-import { ACTIONS } from '../App';
+import { ACTIONS } from '../hooks/useCalculator'
 
 export default function OperationButton({ dispatch, operation }) {
     return (
