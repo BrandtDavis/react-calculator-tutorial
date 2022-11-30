@@ -53,7 +53,7 @@ export const useCalculator = () => {
             if (state.previousOperand == null && payload.operation == "\u221A") {
               return {
                 ...state, 
-                previousOperand: Math.sqrt(state.current),
+                previousOperand: Math.sqrt(state.currentOperand),
                 operation: null, 
                 currentOperand: null,
               }
