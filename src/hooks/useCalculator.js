@@ -50,6 +50,16 @@ export const useCalculator = () => {
                 currentOperand: null,
               }
             }
+            // Squared
+            if (state.previousOperand == null && payload.operation == "x\u00B2") {
+                return {
+                  ...state, 
+                  previousOperand: state.currentOperand ** 2,
+                  operation: null, 
+                  currentOperand: null,
+                }
+            }
+            // Square root
             if (state.previousOperand == null && payload.operation == "\u221A") {
               return {
                 ...state, 
@@ -111,7 +121,15 @@ export const useCalculator = () => {
               currentOperand:  evaluate(state),
               operation: null
             }
-        }
+          default:
+            return {
+                ...state,
+                overwrite: true,
+                previousOperand: null,
+                currentOperand:  "Err",
+                operation: null
+            }
+        }   
     }
 
     return {
