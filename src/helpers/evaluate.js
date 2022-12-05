@@ -30,6 +30,8 @@ export function evaluate({ currentOperand, previousOperand, operation}, payOp) {
     switch(payOp){
         case '%':
             return computation / 100
+        case 'x\u00B2':
+            return computation ** 2
         default:
             return computation
     }
