@@ -32,6 +32,8 @@ export function evaluate({ currentOperand, previousOperand, operation}, payOp) {
             return computation / 100
         case 'x\u00B2':
             return computation ** 2
+        case '\u221A':
+            return Math.sqrt(computation)
         default:
             return computation
     }
