@@ -1,7 +1,10 @@
-export function evaluate({ currentOperand, previousOperand, operation }) {
+export function evaluate({ currentOperand, previousOperand, operation}, payOp) {
     const current = parseFloat(currentOperand)
     const prev = parseFloat(previousOperand)
   
+    console.log("Payload: " + payOp)
+    console.log("Operation: " + operation)
+
     if (isNaN(prev) || isNaN(current)){
       return ""
     }
@@ -23,5 +26,17 @@ export function evaluate({ currentOperand, previousOperand, operation }) {
         computation = prev % current
         break
     }  
+
+    switch(payOp){
+        case '%':
+            return computation / 100
+        case 'x\u00B2':
+            return computation ** 2
+        case '\u221A':
+            return Math.sqrt(computation)
+        default:
+            return computation
+    }
+
     return computation
 }
