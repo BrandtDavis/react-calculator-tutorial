@@ -76,10 +76,15 @@ export const useCalculator = () => {
                 currentOperand: null,
               }
             }
+
+            let formattedPayload = 
+                (['+', '-', '*', '\u00F7'].includes(payload.operation)) 
+                ? payload.operation 
+                : null
             return {
               ...state,
-              previousOperand: evaluate(state),
-              operation: payload.operation,
+              previousOperand: evaluate(state, payload.operation),
+              operation: formattedPayload,
               currentOperand: null
             }
           case ACTIONS.CLEAR:
@@ -118,7 +123,7 @@ export const useCalculator = () => {
               ...state,
               overwrite: true,
               previousOperand: null,
-              currentOperand:  evaluate(state),
+              currentOperand:  evaluate(state, null),
               operation: null
             }
           default:

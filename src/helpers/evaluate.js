@@ -1,9 +1,6 @@
 export function evaluate({ currentOperand, previousOperand, operation}, payOp) {
     const current = parseFloat(currentOperand)
     const prev = parseFloat(previousOperand)
-  
-    console.log("Payload: " + payOp)
-    console.log("Operation: " + operation)
 
     if (isNaN(prev) || isNaN(current)){
       return ""
@@ -37,6 +34,4 @@ export function evaluate({ currentOperand, previousOperand, operation}, payOp) {
         default:
             return computation
     }
-
-    return computation
 }
